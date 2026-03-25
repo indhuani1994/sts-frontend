@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[922],{2922:(e,p,s)=>{s.r(p),s.d(p,{default:()=>o});var t=s(5043),u=s(6662),n=s(8729),c=s(579);const o=()=>{const e=(0,u.Zp)(),{logout:p}=(0,n.A)();return(0,t.useEffect)((()=>{p(),e("/login")}),[p,e]),(0,c.jsx)("p",{children:"Logging out..."})}}}]);
+//# sourceMappingURL=922.c06cbf5a.chunk.js.map
