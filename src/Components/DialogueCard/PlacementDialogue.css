@@ -1,0 +1,119 @@
+.placement-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 1200;
+  padding: 20px;
+}
+
+.placement-modal-card {
+  width: min(720px, 92vw);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+  border: 1px solid #e3ebf8;
+  display: grid;
+  gap: 20px;
+}
+
+.placement-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.placement-modal-kicker {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #4b5a78;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.placement-modal-subtitle {
+  color: #5c6b8b;
+  margin-top: 8px;
+}
+
+.placement-close {
+  border: none;
+  background: #f1f5ff;
+  color: #1d4ed8;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.placement-form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.placement-field {
+  display: grid;
+  gap: 8px;
+}
+
+.placement-field label {
+  font-weight: 600;
+  color: #3a4760;
+  font-size: 0.9rem;
+}
+
+.placement-field input {
+  border: 1px solid #d6dce8;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.placement-field input:focus {
+  border-color: #6693ff;
+  box-shadow: 0 0 0 3px rgba(102, 147, 255, 0.2);
+}
+
+.placement-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.placement-btn {
+  border: 1px solid transparent;
+  background: #ffffff;
+  color: #1f2a44;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.placement-btn.primary {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.25);
+}
+
+.placement-btn.ghost {
+  background: #f3f6ff;
+  color: #1d4ed8;
+}
+
+.placement-btn:hover {
+  transform: translateY(-1px);
+}
+
+@media (min-width: 720px) {
+  .placement-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

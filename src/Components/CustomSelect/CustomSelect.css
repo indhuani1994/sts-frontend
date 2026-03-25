@@ -1,0 +1,78 @@
+.custom-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: sans-serif;
+}
+
+.selected-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.placeholder {
+  color: #999;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 6px;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+
+.option-img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.input-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: text;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+}
+
+.input-box .arrow {
+  margin-left: 10px;
+  font-size: 12px;
+}

@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --sd-bg: radial-gradient(900px 520px at 12% 0%, rgba(14, 116, 144, 0.12) 0%, transparent 55%),
+    radial-gradient(700px 460px at 88% 10%, rgba(30, 58, 138, 0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 45%, #ffffff 100%);
+  --sd-card: rgba(255, 255, 255, 0.9);
+  --sd-border: rgba(15, 23, 42, 0.08);
+  --sd-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  --sd-shadow-soft: 0 10px 26px rgba(15, 23, 42, 0.08);
+  --sd-text: #0f172a;
+  --sd-muted: rgba(15, 23, 42, 0.6);
+  --sd-accent: #0ea5a4;
+}
+
+.role-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--sd-bg);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: var(--sd-shadow);
+  position: relative;
+  overflow: hidden;
+  font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+}
+
+.role-dashboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.role-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.role-header h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--sd-text);
+}
+
+.role-header p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--sd-muted);
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.role-card {
+  background: var(--sd-card);
+  border: 1px solid var(--sd-border);
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  box-shadow: var(--sd-shadow-soft);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 128px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.role-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(14, 116, 144, 0.12), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.role-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  pointer-events: none;
+}
+
+.role-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  border-color: rgba(14, 116, 144, 0.18);
+}
+
+.role-card:hover::before {
+  opacity: 1;
+}
+
+.role-card h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--sd-text);
+  position: relative;
+  z-index: 1;
+}
+
+.role-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--sd-muted);
+  line-height: 1.45;
+  position: relative;
+  z-index: 1;
+}
+
+.role-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.role-pill {
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.72);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.role-pill:nth-child(1) { border-color: rgba(14, 116, 144, 0.2); color: #0f766e; }
+.role-pill:nth-child(2) { border-color: rgba(37, 99, 235, 0.2); color: #1d4ed8; }
+.role-pill:nth-child(3) { border-color: rgba(245, 158, 11, 0.25); color: #b45309; }
+.role-pill:nth-child(4) { border-color: rgba(22, 163, 74, 0.25); color: #15803d; }
+.role-pill:nth-child(5) { border-color: rgba(124, 58, 237, 0.25); color: #6d28d9; }
+.role-pill:nth-child(6) { border-color: rgba(239, 68, 68, 0.25); color: #dc2626; }
+
+@media (max-width: 720px) {
+  .role-dashboard {
+    padding: 16px;
+  }
+
+  .role-header h1 {
+    font-size: 20px;
+  }
+
+  .role-grid {
+    grid-template-columns: 1fr;
+  }
+}

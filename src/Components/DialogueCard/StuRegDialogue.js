@@ -1,0 +1,162 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import CustomSelect from '../CustomSelect/CustomSelect';
+import { resolveFileUrl } from '../../API';
+
+const initialForm = {
+  studentId: '',
+  courseId: '',
+  staffId: '',
+  courseFees: '',
+    paymentType: '',
+    amountReceived: '',
+    receiptGen: '',
+    freezingDate: '',
+    courseDuration: '',
+    secondInstallment: '',
+    balance: '',
+    availTime: '',
+    id: '',
+};
+
+const StuRegDialogue = ({ setOpen, onSubmit, students, editData,  courses, staffs}) => {
+  const [form, setForm] = useState(initialForm);
+
+  const selectedCourse = useMemo(() => courses.find((c) => c._id === form.courseId), [courses, form.courseId]);
+
+  useEffect(() => {
+    if (editData) {
+      setForm({
+        studentId: editData.student._id,
+        courseId: editData.course._id,
+        staffId: editData.staff._id,
+       balance: editData.balance,
+       availTime: editData.availTime,
+         courseFees: editData.courseFees,
+    paymentType: editData.paymentType,
+    amountReceived: editData.amountReceived,
+    receiptGen: editData.receiptGen,
+    courseDuration: editData.courseDuration,
+    freezingDate: editData.freezingDate,
+    secondInstallment: editData.secondInstallment,
+      amountReceivedd: editData.amountReceivedd,
+             balanced: editData.balanced,
+        id: editData._id
+      });
+    } else {
+      setForm(initialForm);
+    }
+  }, [editData]);
+
+  useEffect(() => {
+    if (!editData && selectedCourse && (!form.courseFees || Number(form.courseFees) === 0)) {
+      setForm((prev) => ({ ...prev, courseFees: String(selectedCourse.fees || '') }));
+    }
+  }, [editData, selectedCourse]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+ 
+
+  const handleSubmit = () => {
+    const data = new FormData();
+     console.log(form);
+    Object.entries(form).forEach(([key, value]) => {
+      if (value !== null) data.append(key, value);
+    });
+
+    onSubmit(data, !!editData);
+  };
+
+  return (
+    <div className="popup">
+      <div className="popup-content">
+        
+
+       
+
+        <CustomSelect
+          options={students.map((s) => ({
+            value: s._id,
+            label: `${s.studentName} ${s.studentRedId}`,
+            image: resolveFileUrl(s.studentImage),
+          }))}
+          selected={students.find(s => s._id === form.studentId) && {
+            value: form.studentId,
+            label: `${students.find(s => s._id === form.studentId)?.studentName} ${students.find(s => s._id === form.studentId)?.studentRedId}`,
+            image: resolveFileUrl(students.find(s => s._id === form.studentId)?.studentImage),
+          }}
+          onChange={(val) => setForm({ ...form, studentId: val })}
+          placeholder="Select student"
+        />
+
+        <CustomSelect
+          options={courses.map((c) => ({
+            value: c._id,
+            label: c.courseName,
+            image: resolveFileUrl(c.image),
+          }))}
+          selected={courses.find(c => c._id === form.courseId) && {
+            value: form.courseId,
+            label: `${courses.find(c => c._id === form.courseId)?.courseName} `,
+            image: resolveFileUrl(courses.find(c => c._id === form.courseId)?.image),
+          }}
+          onChange={(val) => setForm({ ...form, courseId: val })}
+          placeholder="select course"
+        />
+
+       
+        <CustomSelect
+          options={staffs.map((c) => ({
+            value: c._id,
+            label: c.staffName,
+            image: resolveFileUrl(c.staffImage),
+          }))}
+          selected={staffs.find(c => c._id === form.staffId) && {
+            value: form.staffId,
+            label: staffs.find(c => c._id === form.staffId)?.staffName,
+            image: resolveFileUrl(staffs.find(c => c._id === form.staffId)?.staffImage),
+          }}
+          onChange={(val) => setForm({ ...form, staffId: val })}
+          placeholder="select student coordinate..."
+        />
+      
+
+
+      
+        <input type="text" name="courseFees" value={form.courseFees} onChange={handleChange} placeholder='Course Fess ...'/>
+       
+        <select name='paymentType' value={form.paymentType} onChange={handleChange}>
+            <option value="">Select Payment Mode...</option>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+            <option value="Bank">Bank</option>
+        </select>
+         <input type="text" name="availTime" value={form.availTime} onChange={handleChange} placeholder='Batch Timing ...' />
+       
+        <input type="text" name="amountReceived" value={form.amountReceived} onChange={handleChange} placeholder='Amount Received ...' />
+        <input type="text" name="receiptGen" value={form.receiptGen} onChange={handleChange} placeholder ='Receipt Generated By...' />
+        <input type="input" name="courseDuration" value={form.courseDuration} onChange={handleChange} placeholder='Course Duration...' />
+
+       
+        <label>Freezing Date</label>
+        <input type="date" name="freezingDate" value={form.freezingDate} onChange={handleChange}  />
+
+        <label >Second Installment Date</label>
+        <input type="date" name="secondInstallment" value={form.secondInstallment} onChange={handleChange} />
+        
+        <div className="dialogue-actions">
+          <button onClick={handleSubmit} style={editData ? { background: '#007cdf', color: '#fff' } : { background: '#007bff', color: '#fff' }}>{editData ? 'Update' : 'Add'}</button>
+          <button onClick={() => setOpen(false)}>Cancel</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default StuRegDialogue;
+
+

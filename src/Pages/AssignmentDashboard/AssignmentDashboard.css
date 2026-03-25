@@ -1,0 +1,265 @@
+.assign-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 6px;
+}
+
+.assign-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.assign-header h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #0f172a;
+}
+
+.assign-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.assign-card {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assign-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.assign-select,
+.assign-input {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+}
+
+.assign-input:focus,
+.assign-select:focus {
+  border-color: rgba(29, 78, 216, 0.35);
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
+}
+
+.assign-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.assign-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.assign-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #1d4ed8;
+  cursor: pointer;
+}
+
+.assign-course-block {
+  border: 1px dashed rgba(15, 23, 42, 0.2);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+}
+
+.assign-course-header {
+  font-weight: 700;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.assign-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.assign-table .assign-actions {
+  justify-content: flex-start;
+}
+
+.assign-btn {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 650;
+  background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.22);
+}
+
+.assign-btn.secondary {
+  background: #fff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow: none;
+}
+
+.assign-btn.danger {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  box-shadow: 0 10px 24px rgba(248, 113, 113, 0.25);
+}
+
+.assign-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.assign-table th,
+.assign-table td {
+  text-align: left;
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.assign-card.large {
+  grid-column: span 7;
+}
+
+.assign-card.medium {
+  grid-column: span 5;
+}
+
+.assign-card.full {
+  grid-column: 1 / -1;
+}
+
+.assign-hero {
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.12), rgba(14, 165, 233, 0.08));
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.assign-hero p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.assign-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.assign-chip {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.assign-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.assign-modal-card {
+  width: min(520px, 95vw);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.assign-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.assign-modal-header p {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.assign-close {
+  border: none;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.assign-edit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.assign-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 960px) {
+  .assign-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .assign-card.large,
+  .assign-card.medium,
+  .assign-card.full {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,113 @@
+.enquiry-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.enquiry-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 26px;
+  border-radius: 20px;
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.28), transparent 60%),
+    linear-gradient(120deg, rgba(240, 249, 255, 0.9), rgba(224, 231, 255, 0.9));
+  color: #0f172a;
+  box-shadow: 0 16px 36px rgba(59, 130, 246, 0.18);
+}
+
+.enquiry-hero h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.enquiry-hero p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.enquiry-add-btn {
+  background: #0ea5e9;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.enquiry-add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(14, 165, 233, 0.28);
+}
+
+.enquiry-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.filter-group input,
+.filter-group select {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.enquiry-clear {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  background: rgba(148, 163, 184, 0.2);
+  color: #1f2937;
+  font-weight: 600;
+  cursor: pointer;
+  height: 38px;
+}
+
+.enquiry-clear:hover {
+  background: rgba(148, 163, 184, 0.32);
+}
+
+@media (max-width: 720px) {
+  .enquiry-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+.priority.registered {
+    background-color: #e0e0e0;
+    color: #555;
+    font-weight: bold;
+}

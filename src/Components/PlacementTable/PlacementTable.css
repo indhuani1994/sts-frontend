@@ -1,0 +1,137 @@
+.placement-table-wrap {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e6ebf2;
+  box-shadow: 0 14px 40px rgba(20, 33, 61, 0.08);
+  overflow: hidden;
+}
+
+.placement-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.placement-table thead th {
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+  color: #2a3353;
+  background: linear-gradient(90deg, #f5f7fb 0%, #eef2f8 100%);
+  border-bottom: 1px solid #e6ebf2;
+  letter-spacing: 0.02em;
+}
+
+.placement-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eef2f8;
+  color: #22293f;
+  vertical-align: middle;
+}
+
+.placement-table tbody tr:hover {
+  background: #f8faff;
+}
+
+.placement-company-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid #dce3ef;
+  background: #f2f5fb;
+}
+
+.placement-company-fallback {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  color: #2a3353;
+  background: #eef2f8;
+  border: 1px solid #dce3ef;
+}
+
+.placement-link {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.placement-link:hover {
+  text-decoration: underline;
+}
+
+.placement-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.placement-actions .placement-btn {
+  border: 1px solid #d6dce8;
+  background: #ffffff;
+  color: #1f2a44;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border 0.15s ease;
+}
+
+.placement-actions .placement-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+  border-color: #bcd0ff;
+}
+
+.placement-actions .placement-btn.ghost {
+  background: #f4f7ff;
+  color: #1d4ed8;
+  border-color: transparent;
+}
+
+.placement-actions .placement-btn.danger {
+  background: #fff1f1;
+  color: #b91c1c;
+  border-color: transparent;
+}
+
+.placement-empty {
+  padding: 18px 20px;
+  color: #5d6b8a;
+  background: #f9fbff;
+  border-top: 1px solid #eef2f8;
+}
+
+@media (max-width: 900px) {
+  .placement-table thead {
+    display: none;
+  }
+
+  .placement-table tr {
+    display: block;
+    border-bottom: 1px solid #eef2f8;
+    padding: 14px 16px;
+  }
+
+  .placement-table tbody td {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border: 0;
+  }
+
+  .placement-table tbody td::before {
+    content: attr(data-label);
+    color: #5d6b8a;
+    font-weight: 600;
+  }
+
+  .placement-actions {
+    justify-content: flex-start;
+  }
+}
