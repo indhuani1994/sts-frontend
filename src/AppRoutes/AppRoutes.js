@@ -116,7 +116,7 @@ const NotFound = lazy(() => import("../Pages/NotFound/NotFound"));
 
 function AppRoutes() {
   return (
-    <BrowserRouter basename="sts-frontend">
+    <BrowserRout basename="/sts-frontend">
       <Suspense fallback={<PageSkeleton />}>
         <Routes>
 
