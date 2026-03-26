@@ -97,21 +97,20 @@ const styles = {
         backgroundColor: '#f5f5f5'
     },
     loginCard: {
-    background: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'white',
     padding: '40px',
-    borderRadius: '12px',
-    backdropFilter: 'blur(15px)',
-    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+    borderRadius: '10px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     width: '100%',
     maxWidth: '400px',
-    color: "#fff",
+    color: "#000"
 },
     title: {
         textAlign: 'center',
         marginBottom: '30px',
         color: '#2c3e50',
         fontSize: '24px',
-        color: "#fff",
+        color: "#312d2d",
     },
     error: {
         backgroundColor: '#ff6b6b',
@@ -133,7 +132,7 @@ const styles = {
     },
     label: {
         fontWeight: 'bold',
-        color: '#fff',
+        color: '#201d1d',
         fontSize: '14px'
     },
     input: {
@@ -144,8 +143,8 @@ const styles = {
         outline: 'none',
         transition: 'border-color 0.3s',
         background: "transparent",
-        boxShadow: "-1px -1px 1px rgba(0, 0,0,0.3)",
-        color: "#fff",
+       
+        color: "#181616",
     },
    
     button: {

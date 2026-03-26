@@ -1,7 +1,7 @@
 // src/pages/AdminLogin.jsx
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MainLayout from '../../MainLayout.js/MainLayout';
 import apiClient from '../../lib/apiClient';
 import { useAuth } from '../../context/AuthContext';
@@ -94,7 +94,10 @@ const AdminLogin = () => {
         >
           {loading ? 'Logging in...' : 'Login'}
         </button>
+
+           <div>Are You a Student Or Staff? <Link to="/login">Click Here</Link></div>
       </div>
+   
     </div>
     </MainLayout>
   );
