@@ -295,7 +295,7 @@ const MyEarnings = () => {
           fetchStaffStats();
         }
 
-        if (user.role === 'hr') {
+        if (user.role === 'hr' || user.role === 'staff') {
           fetchHrStats();
           fetchHrEarnings();
         }
@@ -332,7 +332,7 @@ const MyEarnings = () => {
     }
   return (
     <MainLayout>
-          {user.role === 'hr' && (
+          {(user.role === 'hr' || user.role === 'staff') && (
           <Box sx={{
             mt: 3,
             background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',

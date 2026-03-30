@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, onImageChange, imagePreview }) {
+function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, onImageChange, imagePreview, setEditId }) {
   const [error, setError] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+
 
   useEffect(() => {
     if (!open) {
@@ -19,7 +22,7 @@ function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, o
     return newErrors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors);
@@ -27,7 +30,15 @@ function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, o
     }
 
     setError({});
-    onSubmit();
+    setIsLoading(true)
+    try {
+    await onSubmit();
+      setOpen(false);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);  
+    }
   };
 
   const handleInputChange = (e) => {
@@ -48,14 +59,14 @@ function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, o
   if (!open) return null;
 
   return (
-    <div className="popup">
-      <div className="popup-content company-form">
+    <div className="popup" onClick={() => {setOpen(false);setEditId(null) }}>
+      <div className="popup-content company-form" onClick={(e) => e.stopPropagation()}>
         <div className="dialog-header">
           <div>
             <h3>{isEditing ? 'Edit Company' : 'Add Company'}</h3>
             <p>Manage company details used in placements.</p>
           </div>
-          <button className="dialog-close" type="button" onClick={() => setOpen(false)}>
+          <button className="dialog-close" type="button" onClick={() => {setOpen(false);setEditId(null) }}>
             X
           </button>
         </div>
@@ -92,10 +103,10 @@ function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, o
         </div>
 
         <div className="dialog-actions">
-          <button className="mgmt-btn" type="button" onClick={handleSubmit}>
-            {isEditing ? 'Save Changes' : 'Add Company'}
+          <button className="mgmt-btn" type="button" onClick={handleSubmit} disabled={isLoading}>
+           {isEditing ?( isLoading ? 'Updating Company...': 'Update Company'): (isLoading ? 'Adding Company...': 'Add Company')} 
           </button>
-          <button className="mgmt-btn secondary" type="button" onClick={() => setOpen(false)}>
+          <button className="mgmt-btn secondary" type="button" onClick={() => {setOpen(false);setEditId(null) }}>
             Cancel
           </button>
         </div>

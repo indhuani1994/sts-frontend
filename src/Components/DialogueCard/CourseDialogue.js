@@ -11,10 +11,15 @@ function CourseDialog({
   imagePreview,
   setForm,
   setFile,
+  setEditId,
   hiddenFields = [],
+    
+
 }) {
   const isHidden = (field) => hiddenFields.includes(field);
   const [error, setError] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     if (!open) {
@@ -39,14 +44,27 @@ function CourseDialog({
     return newErrors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit =async () => {
+    
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors);
       return;
     }
     setError({});
-    onSubmit();
+setIsLoading(true);
+    try {
+      await onSubmit();
+    } catch (error) {
+       console.log(error)
+       
+    } finally {
+      setIsLoading(false);
+    }
+    
+    
+    
+
   };
 
   const handleInputChange = (e) => {
@@ -83,11 +101,11 @@ function CourseDialog({
   if (!open) return null;
 
   return (
-    <div className="popup">
-      <div className="popup-content student-form">
+    <div className="popup" onClick={() => { setOpen(false); setFile(null); setEditId(null)}}>
+      <div className="popup-content student-form" onClick={(e) => e.stopPropagation()}>
         <div className="dialog-header">
           <h3>{isEditing ? 'Edit Course' : 'Add Course'}</h3>
-          <button className="dialog-close" type="button" onClick={() => { setOpen(false); setFile(null); }}>
+          <button className="dialog-close" type="button" onClick={() => { setOpen(false); setFile(null); setEditId(null)}}>
             X
           </button>
         </div>
@@ -197,10 +215,10 @@ function CourseDialog({
         )} */}
 
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-          <button className="mgmt-btn" type="button" onClick={handleSubmit}>
-            {isEditing ? 'Update' : 'Add'} Course
+          <button className="mgmt-btn" type="button" onClick={handleSubmit} disabled={isLoading} >
+            {isEditing ?( isLoading ? 'Updating Course...': 'Update Course'): (isLoading ? 'Adding Course...': 'Add Course')} 
           </button>
-          <button className="mgmt-btn secondary" type="button" onClick={() => { setOpen(false); setFile(null); }}>
+          <button className="mgmt-btn secondary" type="button" onClick={() => { setOpen(false); setFile(null); setEditId(null)}}>
             Cancel
           </button>
 

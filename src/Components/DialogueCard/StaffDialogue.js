@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import apiClient from '../../lib/apiClient';
 import { resolveFileUrl } from '../../API';
 
-function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditing }) {
+function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditing, setEditId }) {
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const validate = () => {
     const temp = {};
@@ -31,8 +33,17 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
     return Object.values(temp).every((x) => x === '');
   };
 
-  const handleSubmit = () => {
-    if (validate()) handleEditOrAdd();
+  const handleSubmit =async () => {
+      setIsLoading(true);
+
+    try {
+      if (validate())await handleEditOrAdd();
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setIsLoading(false);
+    }
+    
   };
 
   const handleArrayChange = (name, index, value) => {
@@ -72,11 +83,11 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
   if (!popup) return null;
 
   return (
-    <div className="popup">
-      <div className="popup-content student-form">
+    <div className="popup" onClick={() => {setOpen(false); setEditId(null)}}>
+      <div className="popup-content student-form" onClick={(e) => e.stopPropagation()}>
         <div className="dialog-header">
           <h3>{isEditing ? 'Edit Staff' : 'Add Staff'}</h3>
-          <button className="dialog-close" type="button" onClick={() => setOpen(false)}>
+          <button className="dialog-close" type="button" onClick={() => {setOpen(false); setEditId(null)}}>
             X
           </button>
         </div>
@@ -242,9 +253,10 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
 
         <div className="dialog-actions">
           <button className="mgmt-btn" type="button" onClick={handleSubmit}>
-            {isEditing ? 'Save Changes' : 'Add Staff'}
+            {isEditing ?( isLoading ? 'Updating Staff...': 'Update Staff'): (isLoading ? 'Adding Staff...': 'Add Staff')} 
+           
           </button>
-          <button className="mgmt-btn secondary" type="button" onClick={() => setOpen(false)}>
+          <button className="mgmt-btn secondary" type="button" onClick={() => { setOpen(false); setEditId(null)}}>
             Cancel
           </button>
         </div>

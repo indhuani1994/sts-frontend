@@ -20,6 +20,7 @@ import {
   AttachMoney as Money
   
 } from '@mui/icons-material';
+import logo from '../Assets/Images/logo png.png';
 import {
   AppBar,
   Avatar,
@@ -55,19 +56,22 @@ const routeConfig = {
     { path: '/admin-dashboard', label: 'Dashboard', icon: DashboardIcon },
     { path: '/admin-attendance', label: 'Attendance', icon: CalendarMonthIcon },
     { path: '/admin-mark', label: 'Marks', icon: SchoolIcon },
+     { path: '/course-management', label: 'Courses', icon: BookIcon },
     { path: '/student-management', label: 'Students', icon: SchoolIcon },
     { path: '/staff-management', label: 'Staff', icon: PeopleIcon },
-    { path: '/course-management', label: 'Courses', icon: BookIcon },
-    { path: '/placement-management', label: 'Placements', icon: BusinessCenterIcon },
     { path: '/company', label: 'Companies', icon: ApartmentIcon },
+    { path: '/placement-management', label: 'Placements', icon: BusinessCenterIcon },
+   
     { path: '/stureg', label: 'Registrations', icon: PersonIcon },
     { path: '/admin-hr-earnings', label: 'HR Earnings', icon: Money },
     { path: '/course-update', label: 'Schedule', icon: CalendarMonthIcon },
-    { path: '/assignments', label: 'Assignments', icon: PersonIcon },
+    // { path: '/assignments', label: 'Assignments', icon: PersonIcon },
     { path: '/admin-events', label: 'Events', icon: EventAvailableIcon },
   ],
   staff: [
         { path: '/staff-profile', label: 'Dashboard', icon: PersonIcon },
+    { path: '/enquiry', label: 'HR Panel', icon: EventAvailableIcon },
+    { path: '/my-earnings', label: 'Earnings', icon: Money },
     { path: '/staff-attendance', label: 'Attendance', icon: CalendarMonthIcon },
     { path: '/staff-marks', label: 'Marks', icon: SchoolIcon },
     { path: '/course-staff', label: 'Syllabus', icon: BookIcon },
@@ -82,10 +86,8 @@ const routeConfig = {
   student: [
     // { path: '/student', label: 'Dashboard', icon: DashboardIcon },
     { path: '/student-profile', label: 'Dashboard', icon: PersonIcon  },
-
     { path: '/student-attendance', label: 'Attendance', icon: CalendarMonthIcon },
     { path: '/student-marks', label: 'Marks', icon: SchoolIcon },
-  
   ],
 };
 
@@ -96,7 +98,10 @@ const shouldRenderShell = (pathname, minimal) => {
 
 
 const MainLayout = ({ children, minimal = false }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+ const [sidebarOpen, setSidebarOpen] = useState(() => {
+  const saved = localStorage.getItem('sidebarOpen');
+  return saved !== null ? JSON.parse(saved) : true;
+});
   const [profileMenuAnchor, setProfileMenuAnchor] = useState(null);
   const {count, handleCount} = useContext(EnquiryContext)
 
@@ -179,6 +184,10 @@ const MainLayout = ({ children, minimal = false }) => {
     };
   }, [currentRole]);
 
+  useEffect(() => {
+  localStorage.setItem('sidebarOpen', JSON.stringify(sidebarOpen));
+}, [sidebarOpen]);
+
   if (!shouldRenderShell(location.pathname, minimal)) {
     return <>{children}</>;
   }
@@ -202,7 +211,7 @@ const MainLayout = ({ children, minimal = false }) => {
           }}
         >
           <Toolbar sx={{ justifyContent: sidebarOpen ? 'space-between' : 'center', px: 2 }}>
-              {sidebarOpen ? <Typography variant="h6">STS Panel</Typography> : null}
+              {sidebarOpen ? <Typography variant="h6"><img src={logo} width={60} height={40}/></Typography> : null}
               <IconButton onClick={() => setSidebarOpen((prev) => !prev)} size="small">
               {sidebarOpen ? <ChevronLeftIcon fontSize="small" /> : <ChevronRightIcon fontSize="small" />}
             </IconButton>

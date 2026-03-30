@@ -71,8 +71,9 @@ const StuRegDialogue = ({ setOpen, onSubmit, students, editData,  courses, staff
   };
 
   return (
-    <div className="popup">
-      <div className="popup-content">
+    <div className="popup" onClick={() => setOpen(false)}>
+      <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+        <h2>{editData ? 'Edit Student Registration' : 'Add Student Registration'}</h2>
         
 
        

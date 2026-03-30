@@ -115,7 +115,7 @@ function StaffManagement() {
     setPopup(false);
     editId ? cusToast('Form updated successfully'): cusToast('Form  submitted successfully')
     } catch (error) {
-      cusToast(error.response?.data?.message || "Error occur can't submit form", 'error');
+      cusToast(error.message || "Error occur can't submit form", 'error');
     }
 
    
@@ -185,6 +185,7 @@ function StaffManagement() {
           setPage(0);
           fetchStaffs(query, 0, newPageSize);
         }}
+        
       />
     
       
@@ -197,6 +198,7 @@ function StaffManagement() {
       setForm={setForm}
       handleEditOrAdd={handleAddOrEdit}
       isEditing={!!editId}
+      setEditId={setEditId}
     />
 
       

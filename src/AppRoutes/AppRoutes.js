@@ -254,7 +254,7 @@ function AppRoutes() {
           <Route
             path="/enquiry"
             element={
-              <ProtectedRoute allowedRoles={["admin", "hr"]}>
+              <ProtectedRoute allowedRoles={["admin", "hr", "staff"]}>
                 <EnquiryManagement />
               </ProtectedRoute>
             }
@@ -263,7 +263,7 @@ function AppRoutes() {
           <Route
             path="/my-earnings"
             element={
-              <ProtectedRoute allowedRoles={[ "hr"]}>
+              <ProtectedRoute allowedRoles={["hr", "staff"]}>
                 <MyEarnings />
               </ProtectedRoute>
             }

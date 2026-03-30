@@ -52,6 +52,9 @@ const StaffProfile = () => {
     const [earnings, setEarnings] = useState([]);
     const [earningsLoading, setEarningsLoading] = useState(true);
     const [earningsError, setEarningsError] = useState('');
+    const [followups, setFollowups] = useState([]);
+    const [followupsLoading, setFollowupsLoading] = useState(true);
+    const [followupsError, setFollowupsError] = useState('');
     const [stats, setStats] = useState({
       assignedStudents: 0,
       assignedCourses: 0,
@@ -249,6 +252,36 @@ const StaffProfile = () => {
       }
     }, []);
 
+    const fetchStaffFollowups = useCallback(async () => {
+      try {
+        setFollowupsLoading(true);
+        setFollowupsError('');
+        const res = await apiClient.get('/api/enquiry');
+        const items = Array.isArray(res.data) ? res.data : [];
+        const today = new Date();
+        const isSameDay = (a, b) =>
+          a.getFullYear() === b.getFullYear() &&
+          a.getMonth() === b.getMonth() &&
+          a.getDate() === b.getDate();
+
+        const todays = items
+          .filter((item) => {
+            if (!item.enNextFollowUp) return false;
+            const followUp = new Date(item.enNextFollowUp);
+            if (Number.isNaN(followUp.getTime())) return false;
+            return isSameDay(followUp, today);
+          })
+          .sort((a, b) => new Date(a.enNextFollowUp) - new Date(b.enNextFollowUp));
+
+        setFollowups(todays);
+      } catch (err) {
+        setFollowupsError('Failed to load follow-ups');
+        setFollowups([]);
+      } finally {
+        setFollowupsLoading(false);
+      }
+    }, []);
+
     useEffect(() => {
         const profileData = JSON.parse(localStorage.getItem('profile') || '{}');
 
@@ -266,6 +299,8 @@ const StaffProfile = () => {
 
         if (user.role === 'staff') {
           fetchStaffStats();
+          fetchHrEarnings();
+          fetchStaffFollowups();
         }
 
         if (user.role === 'hr') {
@@ -287,6 +322,25 @@ const StaffProfile = () => {
       { label: 'Upcoming', value: hrStats.upcoming },
       { label: 'Normal', value: hrStats.normal },
     ]), [hrStats]);
+
+    const earningsSummary = useMemo(() => {
+      const totals = earnings.reduce(
+        (acc, row) => {
+          const amount = Number(row.earningAmount || 0);
+          if (row.status === 'earned') {
+            acc.earned += amount;
+          } else {
+            acc.pending += amount;
+          }
+          return acc;
+        },
+        { earned: 0, pending: 0 }
+      );
+      return [
+        { label: 'Earned Amount', value: totals.earned },
+        { label: 'Pending Amount', value: totals.pending },
+      ];
+    }, [earnings]);
 
     if (loading) {
         return (
@@ -351,6 +405,38 @@ const StaffProfile = () => {
             </Box>
           ))}
         </Box>
+
+        {(user.role === 'staff' || user.role === 'hr') && (
+          <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+            gap: 2,
+            mb: 3,
+          }}>
+            {earningsSummary.map((card, index) => (
+              <Box
+                key={index}
+                sx={{
+                  background: 'linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%)',
+                  border: '1px solid rgba(15, 23, 42, 0.08)',
+                  borderRadius: 2,
+                  p: 2,
+                  boxShadow: '0 8px 20px rgba(15, 23, 42, 0.08)',
+                }}
+              >
+                <Typography sx={{ color: '#64748b', fontSize: 13, mb: 0.5 }}>{card.label}</Typography>
+                <Typography sx={{ fontSize: 22, fontWeight: 800, color: '#0f172a' }}>
+                  {earningsLoading ? '...' : card.value.toFixed(2)}
+                </Typography>
+                {earningsError && (
+                  <Typography sx={{ color: '#b91c1c', fontSize: 12, mt: 0.5 }}>
+                    {earningsError}
+                  </Typography>
+                )}
+              </Box>
+            ))}
+          </Box>
+        )}
 
         <Box sx={{
           background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
@@ -427,6 +513,84 @@ const StaffProfile = () => {
             </Box>
           )}
         </Box>
+
+        {user.role === 'staff' && (
+          <Box sx={{
+            mt: 3,
+            background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
+            borderRadius: 2,
+            border: '1px solid rgba(15, 23, 42, 0.08)',
+            boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
+            p: 2,
+          }}>
+            <Typography sx={{ fontWeight: 700, color: '#0f172a', mb: 1 }}>
+              Today's Follow-ups
+            </Typography>
+            {followupsError && (
+              <Typography sx={{ color: '#b91c1c', mb: 1 }}>{followupsError}</Typography>
+            )}
+            {followupsLoading ? (
+              <Typography sx={{ color: '#64748b' }}>Loading follow-ups...</Typography>
+            ) : followups.length === 0 ? (
+              <Typography sx={{ color: '#64748b' }}>No follow-ups scheduled for today.</Typography>
+            ) : (
+              <Box sx={{ display: 'grid', gap: 1.5 }}>
+                {followups.map((item, idx) => (
+                  <Box
+                    key={`${item._id || idx}`}
+                    sx={{
+                      display: 'grid',
+                      gridTemplateColumns: { xs: '1fr', sm: '110px 1fr 140px' },
+                      gap: 1,
+                      alignItems: 'center',
+                      p: 1.5,
+                      borderRadius: 2,
+                      border: '1px solid rgba(15, 23, 42, 0.08)',
+                      background: '#ffffff',
+                      boxShadow: '0 6px 14px rgba(15, 23, 42, 0.06)',
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: 1,
+                        py: 0.5,
+                        borderRadius: 999,
+                        background: 'rgba(14, 116, 144, 0.12)',
+                        color: '#0f766e',
+                        fontWeight: 700,
+                        fontSize: 12,
+                        minWidth: 90,
+                      }}
+                    >
+                      {item.enNextFollowUp
+                        ? new Date(item.enNextFollowUp).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+                        : 'Time'}
+                    </Box>
+                    <Box>
+                      <Typography sx={{ fontWeight: 700, color: '#0f172a', fontSize: 14 }}>
+                        {item.enName || 'Enquiry'}
+                      </Typography>
+                      <Typography sx={{ color: '#64748b', fontSize: 12 }}>
+                        {item.enCourse || 'Course not set'}
+                      </Typography>
+                    </Box>
+                    <Box sx={{ textAlign: { xs: 'left', sm: 'right' } }}>
+                      <Typography sx={{ color: '#1f2937', fontSize: 12, fontWeight: 600 }}>
+                        {item.enStatus || 'Status'}
+                      </Typography>
+                      <Typography sx={{ color: '#94a3b8', fontSize: 11 }}>
+                        {item.enMobile || ''}
+                      </Typography>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            )}
+          </Box>
+        )}
 
         {/* {user.role === 'hr' && (
           <Box sx={{

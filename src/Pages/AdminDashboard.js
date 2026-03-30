@@ -338,8 +338,11 @@ const AdminDashboard = () => {
       </div>
 
       {openDialog ? (
-        <div className="ad-modal" role="dialog" aria-modal="true">
-          <div className="ad-modal-card">
+        <div className="ad-modal" role="dialog" aria-modal="true" onClick={() => {
+                  setOpenDialog(false);
+                  resetForm();
+                }}>
+          <div className="ad-modal-card" onClick={(e) => e.stopPropagation()}>
             <div className="ad-modal-head">
               <h3>{isEditMode ? 'Edit User Account' : 'Create User Account'}</h3>
               <button

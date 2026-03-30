@@ -59,8 +59,8 @@ const InstallDialogue = ({ setOpen, onSubmit, editData, stuRegs }) => {
   const selectedReg = stuRegs.find((reg) => reg._id === form.registerId);
 
   return (
-    <div className="popup">
-      <div className="popup-content">
+    <div className="popup" onClick={() => setOpen(false)} >
+      <div className="popup-content" onClick={(e) => e.stopPropagation()}>
         <h2>{editData ? 'Edit Installment' : 'Add Installment'}</h2>
 
         <CustomSelect

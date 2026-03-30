@@ -5,6 +5,8 @@ import { resolveFileUrl } from '../../API';
 function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, setForm, setEditId }) {
   const [errors, setErrors] = useState({});
   const [coursesName, setCoursesName] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     fetchCourses();
@@ -32,8 +34,16 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
     return Object.values(temp).every((x) => x === '');
   };
 
-  const handleSubmit = () => {
-    if (validate()) handleEditOrAdd();
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    try {
+    if (validate()) await handleEditOrAdd();
+      
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);  
+    }
   };
 
   const handleArrayChange = (name, index, value) => {
@@ -76,8 +86,8 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
   if (!popup) return null;
 
   return (
-    <div className="popup">
-      <div className="popup-content student-form">
+    <div className="popup" onClick={PopupClose}>
+      <div className="popup-content student-form" onClick={(e) => e.stopPropagation()}>
         <div className="dialog-header">
           <h3>{isEditing ? 'Edit Student' : 'Add Student'}</h3>
           <button className="dialog-close" type="button" onClick={PopupClose}>
@@ -257,8 +267,9 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
         </div>
 
         <div className="dialog-actions">
-          <button className="mgmt-btn" type="button" onClick={handleSubmit}>
-            {isEditing ? 'Save Changes' : 'Add Student'}
+          <button className="mgmt-btn" type="button" onClick={handleSubmit} disabled={isLoading}> 
+            {isEditing ?( isLoading ? 'Updating student...': 'Update Student'): (isLoading ? 'Adding Student...': 'Add Student')} 
+           
           </button>
           <button className="mgmt-btn secondary" type="button" onClick={PopupClose}>
             Cancel

@@ -6,7 +6,12 @@ import { cusToast } from "../Components/Toast/CusToast";
 import { resolveFileUrl } from "../API";
 import "./EventsPage.css";
 import { confirmBox } from "../Components/ConfirmBox/ConfirmBox";
-
+const initialForm = {
+    title: "",
+    image: null,
+    description: "",
+    eventType: "",
+  }
 const AdminEvents = () => {
   const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -170,8 +175,9 @@ const AdminEvents = () => {
         </div>
 
         {showModal && (
-          <div className="events-modal">
-            <div className="events-modal-card">
+                     
+          <div className="events-modal" onClick={() => {setShowModal(false); setEditingId(null); setFormData(initialForm) }}>
+            <div className="events-modal-card" onClick={(e) => e.stopPropagation()}>
               <div className="events-modal-header">
                 <h2>{editingId ? "Edit Event" : "Add Event"}</h2>
                 <button
@@ -180,6 +186,8 @@ const AdminEvents = () => {
                   onClick={() => {
                     setShowModal(false);
                     setEditingId(null);
+                      setFormData(initialForm);
+                    
                   }}
                 >
                   X
@@ -248,6 +256,7 @@ const AdminEvents = () => {
                     onClick={() => {
                       setShowModal(false);
                       setEditingId(null);
+                      setFormData(initialForm)
                     }}
                   >
                     Cancel

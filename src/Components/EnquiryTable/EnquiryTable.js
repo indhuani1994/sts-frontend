@@ -7,7 +7,7 @@ const EnquiryTable = ({ enquiries, onEdit, onDelete, handleCopy, role, onRegiste
   const navigate = useNavigate();
  
   const handleRegisterClick = (item) => {
-    if (role === 'hr') {
+    if (role === 'hr' || role === 'staff') {
       if (onRegister) onRegister(item);
       return;
     }
@@ -158,11 +158,12 @@ const EnquiryTable = ({ enquiries, onEdit, onDelete, handleCopy, role, onRegiste
                         className={`enquiry-btn ${getRegisterButtonClass(item)}`}
                         onClick={() => handleRegisterClick(item)}
                         disabled={
-                          (role === 'hr' && (item.registerStatus === 'registered' || item.registerStatus === 'student_added')) ||
+                          ((role === 'hr' || role === 'staff') &&
+                            (item.registerStatus === 'registered' || item.registerStatus === 'student_added')) ||
                           (role === 'admin' && !(item.registerStatus === 'registered' || item.registerStatus === 'new'))
                         }
                       >
-                        {role === 'hr' ? (
+                        {role === 'hr' || role === 'staff' ? (
                           item.registerStatus === 'registered' || item.registerStatus === 'student_added'
                             ? 'Registered'
                             : 'Register'

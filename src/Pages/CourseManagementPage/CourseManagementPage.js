@@ -26,7 +26,9 @@ function CourseManagement() {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(initialForm);
   const [editId, setEditId] = useState(null);
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     fetchCourses();
@@ -62,7 +64,7 @@ function CourseManagement() {
     formData.append('syllabus', form.syllabus.filter(item => item.trim( ) !== ''));
     if(file) formData.append('image', file);
     
-    alert("I am really work")
+    
 
     if (editId ) {
       await apiClient.put(`/api/courses/${editId}`, formData, {
@@ -71,7 +73,7 @@ function CourseManagement() {
      setEditId(null);
      setOpen(false)
     } else {
-      alert("Hello I iam work")
+      
       await apiClient.post('/api/courses', formData, {
         headers: {'Content-Type': 'multipart/form-data'}
       });
@@ -118,8 +120,7 @@ function CourseManagement() {
     fetchCourses();
     } catch (error) {
       cusToast('Course Deleted Failed', 'error');
-    }
-  
+    } 
   };
 
   const handleImageChange = (e) => {
@@ -188,9 +189,11 @@ function CourseManagement() {
     onChange={handleChange}
     onSubmit={handleSubmit}
     isEditing={!!editId}
+    isLoading={isLoading}
     setFile={setFile}
     onImageChange={handleImageChange}
     imagePreview={file ? URL.createObjectURL(file) : resolveFileUrl(form.image)}
+    setEditId={setEditId}
   />
  
 </div>

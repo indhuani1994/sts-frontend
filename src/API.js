@@ -1,4 +1,5 @@
-export const API = "https://sts-backend-aew0.onrender.com";
+// export const API = "https://sts-backend-aew0.onrender.com";
+export const API = "http://localhost:5000";
 
 export const resolveFileUrl = (value) => {
   if (!value) return '';

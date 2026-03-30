@@ -72,7 +72,7 @@ function CompanyManagement() {
   };
 
   const handleDelete = async (id) => {
-      const isDelete = (await confirmBox('You want to delete this alumni/student placement')).isConfirmed;
+      const isDelete = (await confirmBox('Do you wanted to delete this company?')).isConfirmed;
             if (!isDelete) return;
             
     try {
@@ -139,6 +139,7 @@ function CompanyManagement() {
               ? URL.createObjectURL(file)
               : resolveFileUrl(form.companyImage)
           }
+          setEditId={setEditId}
         />
       </div>
     </MainLayout>

@@ -43,8 +43,8 @@ const PlacementDialogue = ({ setOpen, onSubmit, students, editData, company }) =
   };
 
   return (
-    <div className="placement-modal">
-      <div className="placement-modal-card">
+    <div className="placement-modal" onClick={() => setOpen(false)}>
+      <div className="placement-modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="placement-modal-header">
           <div>
             <p className="placement-modal-kicker">Placement</p>

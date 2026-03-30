@@ -367,7 +367,7 @@ const StuRegManagement = () => {
 
   return (
     <MainLayout>
-      <div className="reg-container">
+      <div className="reg-container" >
         {/* Header Section */}
         <div className="reg-header">
           <div>
@@ -488,8 +488,8 @@ const StuRegManagement = () => {
 
         {/* Modal Form */}
         {showModal && (
-          <div className="reg-modal-overlay">
-            <div className="reg-modal">
+          <div className="reg-modal-overlay" onClick={closeModal}>
+            <div className="reg-modal" onClick={(e)=>e.stopPropagation()}>
               <div className="reg-modal-header">
                 <h2>{isEditing ? 'Edit Registration' : 'New Registration'}</h2>
                 <button className="reg-close-btn" onClick={closeModal}>×</button>
