@@ -7,11 +7,11 @@ import { resolveFileUrl } from "../API";
 import "./EventsPage.css";
 import { confirmBox } from "../Components/ConfirmBox/ConfirmBox";
 const initialForm = {
-    title: "",
-    image: null,
-    description: "",
-    eventType: "",
-  }
+  title: "",
+  image: null,
+  description: "",
+  eventType: "",
+}
 const AdminEvents = () => {
   const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -175,8 +175,8 @@ const AdminEvents = () => {
         </div>
 
         {showModal && (
-                     
-          <div className="events-modal" onClick={() => {setShowModal(false); setEditingId(null); setFormData(initialForm) }}>
+
+          <div className="events-modal" onClick={() => { setShowModal(false); setEditingId(null); setFormData(initialForm) }}>
             <div className="events-modal-card" onClick={(e) => e.stopPropagation()}>
               <div className="events-modal-header">
                 <h2>{editingId ? "Edit Event" : "Add Event"}</h2>
@@ -186,8 +186,8 @@ const AdminEvents = () => {
                   onClick={() => {
                     setShowModal(false);
                     setEditingId(null);
-                      setFormData(initialForm);
-                    
+                    setFormData(initialForm);
+
                   }}
                 >
                   X
@@ -204,6 +204,7 @@ const AdminEvents = () => {
                       onChange={handleChange}
                       className="events-input"
                       required
+                      placeholder="e.g., Web Development Bootcamp"
                     />
                   </div>
 
@@ -216,11 +217,26 @@ const AdminEvents = () => {
                       className="events-input"
                       required
                     >
-                      <option value="">Choose</option>
-                      <option value="Seminar">Seminar</option>
-                      <option value="Workshop">Workshop</option>
-                      <option value="Celebration">Celebration</option>
-                      <option value="Other">Other</option>
+                     <option value="">Choose</option>
+
+<option value="seminar">Seminar</option>
+<option value="celebration">Celebration</option>
+
+<option value="career_guidance_seminar">Career Guidance Seminar</option>
+<option value="workshop">Workshop</option>
+<option value="webinar">Webinar (Online Seminar)</option>
+<option value="bootcamp">Bootcamp</option>
+<option value="masterclass">Masterclass</option>
+<option value="demo_class">Demo Class / Free Trial Class</option>
+<option value="guest_lecture">Guest Lecture</option>
+<option value="training_session">Training Session</option>
+
+<option value="placement_drive">Placement Drive</option>
+<option value="interview_preparation">Interview Preparation Session</option>
+<option value="resume_workshop">Resume Building Workshop</option>
+<option value="soft_skills_training">Soft Skills Training</option>
+
+<option value="other">Other</option>
                     </select>
                   </div>
 
@@ -245,6 +261,7 @@ const AdminEvents = () => {
                       className="events-input"
                       rows={4}
                       required
+                      placeholder="e.g., A beginner-friendly bootcamp covering HTML, CSS, JavaScript, and real-time projects"
                     ></textarea>
                   </div>
                 </div>

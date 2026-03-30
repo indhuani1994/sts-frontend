@@ -1,11 +1,32 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+// import {
+//   Apartment as ApartmentIcon,
+//   Book as BookIcon,
+//   BusinessCenter as BusinessCenterIcon,
+//   CalendarMonth as CalendarMonthIcon,
+//   EventAvailable as EventAvailableIcon,
+//   ChevronLeft as ChevronLeftIcon,
+//   ChevronRight as ChevronRightIcon,
+//   DarkMode as DarkModeIcon,
+//   Dashboard as DashboardIcon,
+//   LightMode as LightModeIcon,
+//   Logout as LogoutIcon,
+//   NotificationsNone as NotificationsNoneIcon,
+//   People as PeopleIcon,
+//   Person as PersonIcon,
+//   School as SchoolIcon,
+//   Search as SearchIcon,
+//   AttachMoney as Money
+  
+// } from '@mui/icons-material';
+
 import {
-  Apartment as ApartmentIcon,
-  Book as BookIcon,
-  BusinessCenter as BusinessCenterIcon,
-  CalendarMonth as CalendarMonthIcon,
-  EventAvailable as EventAvailableIcon,
+  Apartment as CompanyIcon,
+  Book as CourseIcon,
+  BusinessCenter as PlacementIcon,
+  CalendarMonth as AttendanceIcon,
+  EventAvailable as EventIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   DarkMode as DarkModeIcon,
@@ -13,12 +34,17 @@ import {
   LightMode as LightModeIcon,
   Logout as LogoutIcon,
   NotificationsNone as NotificationsNoneIcon,
-  People as PeopleIcon,
-  Person as PersonIcon,
-  School as SchoolIcon,
+  People as StaffIcon,
+  Person as ProfileIcon,
+  School as StudentIcon,
   Search as SearchIcon,
-  AttachMoney as Money
-  
+  AttachMoney as MoneyIcon,
+  Groups as HRIcon,
+  MenuBook as SyllabusIcon,
+  EventNote as ScheduleIcon,
+  Work as JobIcon,
+  Grading as MarksIcon,
+  Dashboard,
 } from '@mui/icons-material';
 import logo from '../Assets/Images/logo png.png';
 import {
@@ -54,40 +80,40 @@ const drawerCollapsedWidth = 84;
 const routeConfig = {
   admin: [
     { path: '/admin-dashboard', label: 'Dashboard', icon: DashboardIcon },
-    { path: '/admin-attendance', label: 'Attendance', icon: CalendarMonthIcon },
-    { path: '/admin-mark', label: 'Marks', icon: SchoolIcon },
-     { path: '/course-management', label: 'Courses', icon: BookIcon },
-    { path: '/student-management', label: 'Students', icon: SchoolIcon },
-    { path: '/staff-management', label: 'Staff', icon: PeopleIcon },
-    { path: '/company', label: 'Companies', icon: ApartmentIcon },
-    { path: '/placement-management', label: 'Placements', icon: BusinessCenterIcon },
+    { path: '/admin-attendance', label: 'Attendance', icon: AttendanceIcon },
+    { path: '/admin-mark', label: 'Marks', icon: MarksIcon },
+     { path: '/course-management', label: 'Courses', icon: CourseIcon },
+    { path: '/student-management', label: 'Students', icon: StudentIcon },
+    { path: '/staff-management', label: 'Staff', icon: StaffIcon },
+    { path: '/company', label: 'Companies', icon: CompanyIcon },
+    { path: '/placement-management', label: 'Placements', icon: PlacementIcon },
    
-    { path: '/stureg', label: 'Registrations', icon: PersonIcon },
-    { path: '/admin-hr-earnings', label: 'HR Earnings', icon: Money },
-    { path: '/course-update', label: 'Schedule', icon: CalendarMonthIcon },
+    { path: '/stureg', label: 'Registrations', icon: ProfileIcon },
+    { path: '/admin-hr-earnings', label: 'HR Earnings', icon: MoneyIcon },
+    { path: '/course-update', label: 'Schedule', icon: ScheduleIcon },
     // { path: '/assignments', label: 'Assignments', icon: PersonIcon },
-    { path: '/admin-events', label: 'Events', icon: EventAvailableIcon },
+    { path: '/admin-events', label: 'Events', icon: EventIcon },
   ],
   staff: [
-        { path: '/staff-profile', label: 'Dashboard', icon: PersonIcon },
-    { path: '/enquiry', label: 'HR Panel', icon: EventAvailableIcon },
-    { path: '/my-earnings', label: 'Earnings', icon: Money },
-    { path: '/staff-attendance', label: 'Attendance', icon: CalendarMonthIcon },
-    { path: '/staff-marks', label: 'Marks', icon: SchoolIcon },
-    { path: '/course-staff', label: 'Syllabus', icon: BookIcon },
-    { path: '/staff-course-update', label: 'Schedule', icon: CalendarMonthIcon },
+        { path: '/staff-profile', label: 'Dashboard', icon: DashboardIcon },
+    { path: '/enquiry', label: 'HR Panel', icon: HRIcon },
+    { path: '/my-earnings', label: 'Earnings', icon: MoneyIcon },
+    { path: '/staff-attendance', label: 'Attendance', icon: AttendanceIcon },
+    { path: '/staff-marks', label: 'Marks', icon: MarksIcon },
+    { path: '/course-staff', label: 'Syllabus', icon: SyllabusIcon },
+    { path: '/staff-course-update', label: 'Schedule', icon: ScheduleIcon },
 
   ],
   hr: [
-    { path: '/staff-profile', label: 'Dashboard', icon: PersonIcon },
-    { path: '/enquiry', label: 'Enquiry', icon: EventAvailableIcon },
-    { path: '/my-earnings', label: 'Earnings', icon: Money },
+    { path: '/staff-profile', label: 'Dashboard', icon: DashboardIcon },
+    { path: '/enquiry', label: 'Enquiry', icon: HRIcon },
+    { path: '/my-earnings', label: 'Earnings', icon: MoneyIcon },
   ],
   student: [
     // { path: '/student', label: 'Dashboard', icon: DashboardIcon },
-    { path: '/student-profile', label: 'Dashboard', icon: PersonIcon  },
-    { path: '/student-attendance', label: 'Attendance', icon: CalendarMonthIcon },
-    { path: '/student-marks', label: 'Marks', icon: SchoolIcon },
+    { path: '/student-profile', label: 'Dashboard', icon: DashboardIcon  },
+    { path: '/student-attendance', label: 'Attendance', icon: AttendanceIcon },
+    { path: '/student-marks', label: 'Marks', icon: MarksIcon },
   ],
 };
 

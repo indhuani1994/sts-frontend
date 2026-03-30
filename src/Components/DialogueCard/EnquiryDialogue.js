@@ -192,7 +192,7 @@
 // export default EnquiryDialogue;
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import axios from "axios";
 import {
   Dialog,
@@ -225,6 +225,8 @@ const initialForm = {
 const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
   const [form, setForm] = useState(initialForm);
   const [coursesName, setCoursesName] = useState([]);
+  const [reference, setReference] = useState("");
+
 
   // Fetch course list once
   useEffect(() => {
@@ -301,6 +303,10 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
     }
   };
 
+  useEffect(()=>{
+    setReference(form.enReference)
+  },[form])
+
   return (
     <Dialog open onClose={() => setOpen(false)} fullWidth maxWidth="sm" >
       <DialogTitle>{editData ? "Edit Enquiry" : "Add Enquiry"}</DialogTitle>
@@ -310,7 +316,7 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
             <TextField
               fullWidth
               name="enName"
-              label="Name"
+              label="Name: ex John Doe"
               value={form.enName}
               onChange={handleChange}
               required
@@ -320,7 +326,7 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
             <TextField
               fullWidth
               name="enMobile"
-              label="Mobile"
+              label="Mobile: ex 9876543210"
               value={form.enMobile}
               onChange={handleChange}
               required
@@ -330,7 +336,7 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
             <TextField
               fullWidth
               name="enMail"
-              label="Email"
+              label="Email: ex johndoe@gmail.com"
               type="email"
               value={form.enMail}
               onChange={handleChange}
@@ -343,7 +349,7 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
               fullWidth
               select
               name="enCourse"
-              label="Course"
+              label="Course: ex Web Development"
               value={form.enCourse}
               onChange={handleChange}
               
@@ -371,6 +377,7 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
               <MenuItem value="Justdial">Justdial</MenuItem>
               <MenuItem value="Walking">Walking</MenuItem>
               <MenuItem value="Student Reference">Student Reference</MenuItem>
+              <MenuItem value="Instagram">Instagram</MenuItem>
               <MenuItem value="Others">Others</MenuItem>
             </TextField>
           </Grid>
@@ -379,9 +386,11 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
             <TextField
               fullWidth
               name="enReferedStudent"
-              label="Referred Student"
+              label={reference === "Student Reference" ? "Referred Student" : reference === "Others" ? "Others" : '' }
               value={form.enReferedStudent}
               onChange={handleChange}
+              disabled={reference === "Justdial" || reference === "Walking" || reference === "Instagram"}
+              required={reference === "Student Reference" || reference === "Others"}
             />
           </Grid>
 
@@ -389,7 +398,7 @@ const EnquiryDialogue = ({ setOpen, onSubmit, editData, enquiry,now }) => {
             <TextField
               fullWidth
               name="enStatus"
-              label="Status"
+              label="Status: ex She is willing in the course"
               value={form.enStatus}
               onChange={handleChange}
               required

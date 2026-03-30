@@ -85,7 +85,7 @@ function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, o
               name="companyName"
               value={form.companyName}
               onChange={handleInputChange}
-              placeholder="Company Name"
+              placeholder="ex: Google"
             />
             {error.companyName && <p className="err">{error.companyName}</p>}
           </div>
@@ -96,7 +96,7 @@ function CompanyDialogue({ open, setOpen, form, onChange, onSubmit, isEditing, o
               name="companyLocation"
               value={form.companyLocation}
               onChange={handleInputChange}
-              placeholder="Company Location"
+              placeholder="ex: Singapore"
             />
             {error.companyLocation && <p className="err">{error.companyLocation}</p>}
           </div>

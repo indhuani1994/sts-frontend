@@ -120,7 +120,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               name="studentName"
               value={form.studentName}
               onChange={handleChange}
-              placeholder="Student Name"
+              placeholder="Ex: John Doe"
             />
             {errors.studentName && <p className="err">{errors.studentName}</p>}
           </div>
@@ -143,7 +143,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               name="studentMobile"
               value={form.studentMobile}
               onChange={handleChange}
-              placeholder="Student Mobile"
+              placeholder="Ex: 9876543210"
             />
             {errors.studentMobile && <p className="err">{errors.studentMobile}</p>}
           </div>
@@ -154,27 +154,27 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               name="studentMail"
               value={form.studentMail}
               onChange={handleChange}
-              placeholder="Student Email"
+              placeholder="Ex: johndoe@gmail.com"
             />
           </div>
 
           <div className="dialog-field">
-            <label>College/School</label>
+            <label>School/College/Office</label>
             <input
               name="studentCollege"
               value={form.studentCollege}
               onChange={handleChange}
-              placeholder="Student College/School"
+              placeholder="Ex: ABC College of Engineering"
             />
           </div>
 
           <div className="dialog-field">
-            <label>College/School ID</label>
+            <label>School/College/Office ID</label>
             <input
               name="studentCollegeId"
               value={form.studentCollegeId}
               onChange={handleChange}
-              placeholder="Student College/School ID"
+              placeholder="e.g., 21CS045 / STU2023001"
             />
           </div>
 
@@ -184,7 +184,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               name="studentCollegeAddress"
               value={form.studentCollegeAddress}
               onChange={handleChange}
-              placeholder="Student College Address"
+              placeholder=" 123, College Road, Chennai - 600001"
             />
           </div>
 
@@ -194,7 +194,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               name="studentYearOrExperience"
               value={form.studentYearOrExperience}
               onChange={handleChange}
-              placeholder="Year/Experience"
+              placeholder="Final Year / 1 year experience of ABC Company/ Fresher"
             />
           </div>
 
@@ -219,7 +219,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               name="studentAddress"
               value={form.studentAddress}
               onChange={handleChange}
-              placeholder="Student Address"
+              placeholder="MG Road, Bangalore - 560001"
             />
           </div>
         </div>
@@ -231,7 +231,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
               <input
                 value={edu}
                 onChange={(e) => handleArrayChange('studentEducation', i, e.target.value)}
-                placeholder={`Education ${i + 1}`}
+                placeholder={`e.g., 10th Pass / 12th Pass / Pursuing Degree ${i + 1}`}
               />
               {form.studentEducation.length > 1 && (
                 <button
@@ -269,7 +269,7 @@ function StudentDialogue({ popup, setOpen, handleEditOrAdd, isEditing, form, set
         <div className="dialog-actions">
           <button className="mgmt-btn" type="button" onClick={handleSubmit} disabled={isLoading}> 
             {isEditing ?( isLoading ? 'Updating student...': 'Update Student'): (isLoading ? 'Adding Student...': 'Add Student')} 
-           
+             
           </button>
           <button className="mgmt-btn secondary" type="button" onClick={PopupClose}>
             Cancel

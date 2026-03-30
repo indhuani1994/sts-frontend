@@ -124,7 +124,7 @@ setIsLoading(true);
             <div className="dialog-field">
               <label>Course Code</label>
               {error.courseCode && <p className="err">{error.courseCode}</p>}
-              <input name="courseCode" value={form.courseCode} onChange={handleInputChange} placeholder="Course Code" />
+              <input name="courseCode" value={form.courseCode} onChange={handleInputChange} placeholder="Ex: CC101" />
             </div>
           )}
 
@@ -132,7 +132,7 @@ setIsLoading(true);
             <div className="dialog-field">
               <label>Course Name</label>
               {error.courseName && <p className="err">{error.courseName}</p>}
-              <input name="courseName" value={form.courseName} onChange={handleInputChange} placeholder="Course Name" />
+              <input name="courseName" value={form.courseName} onChange={handleInputChange} placeholder="Ex: C and C++" />
             </div>
           )}
 
@@ -140,14 +140,14 @@ setIsLoading(true);
             <div className="dialog-field">
               <label>Fees</label>
               {error.fees && <p className="err">{error.fees}</p>}
-              <input name="fees" value={form.fees} onChange={handleInputChange} placeholder="Fees" />
+              <input name="fees" value={form.fees} onChange={handleInputChange} placeholder="Ex: 8000" />
             </div>
           )}
            {!isHidden('drivelink') && (
             <div className="dialog-field">
               <label>drivelink</label>
               {error.drivelink && <p className="err">{error.drivelink}</p>}
-              <input name="drivelink" value={form.drivelink} onChange={handleInputChange} placeholder="drivelink" />
+              <input name="drivelink" value={form.drivelink} onChange={handleInputChange} placeholder="Ex: https://drive.google.com/" />
             </div>
           )}
 
@@ -155,7 +155,7 @@ setIsLoading(true);
             <div className="dialog-field">
               <label>Duration</label>
               {error.duration && <p className="err">{error.duration}</p>}
-              <input name="duration" value={form.duration} onChange={handleInputChange} placeholder="Duration" />
+              <input name="duration" value={form.duration} onChange={handleInputChange} placeholder="Ex: 6 months" />
             </div>
           )}
 
@@ -163,21 +163,21 @@ setIsLoading(true);
             <div className="dialog-field">
               <label>Pre-requirements</label>
               {error.prerequire && <p className="err">{error.prerequire}</p>}
-              <input name="prerequire" value={form.prerequire} onChange={handleInputChange} placeholder="Pre-requirements" />
+              <input name="prerequire" value={form.prerequire} onChange={handleInputChange} placeholder="Ex: 12th Standard" />
             </div>
           )}
 
           {!isHidden('description') && (
             <div className="dialog-field full">
               <label>Description</label>
-              <input name="description" value={form.description} onChange={handleInputChange} placeholder="Description..." />
+              <input name="description" value={form.description} onChange={handleInputChange} placeholder="Ex:Our C and C++ Programming Course is designed to build a strong foundation in programming and problem-solving skills. This course is perfect for beginners as well as students who want to develop logical thinking and prepare for advanced technologies." />
             </div>
           )}
 
           {!isHidden('offer') && (
             <div className="dialog-field">
               <label>Offer</label>
-              <input name="offer" value={form.offer} onChange={handleInputChange} placeholder="Offer..." />
+              <input name="offer" value={form.offer} onChange={handleInputChange} placeholder="Ex: 10" />
             </div>
           )}
 

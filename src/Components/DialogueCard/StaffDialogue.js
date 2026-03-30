@@ -118,7 +118,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               name="staffName"
               value={form.staffName}
               onChange={handleChange}
-              placeholder="Staff Name"
+              placeholder="Ex: John Doe"
             />
             {errors.staffName && <p className="err">{errors.staffName}</p>}
           </div>
@@ -129,7 +129,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               name="staffRole"
               value={form.staffRole}
               onChange={handleChange}
-              placeholder="Staff Role"
+              placeholder="Ex: HR Manager"
             />
             {errors.staffRole && <p className="err">{errors.staffRole}</p>}
           </div>
@@ -143,7 +143,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               max="100"
               value={form.hrCommissionPercent ?? ''}
               onChange={handleChange}
-              placeholder="e.g. 10"
+              placeholder="Ex: 10"
             />
           </div>
 
@@ -153,7 +153,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               name="staffMobile"
               value={form.staffMobile}
               onChange={handleChange}
-              placeholder="Staff Mobile"
+              placeholder="Ex: 9876543210"
             />
             {errors.staffMobile && <p className="err">{errors.staffMobile}</p>}
           </div>
@@ -164,7 +164,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               name="staffMail"
               value={form.staffMail}
               onChange={handleChange}
-              placeholder="Staff Email"
+              placeholder="Ex: johndoe@gmail.com "
             />
             {errors.staffMail && <p className="err">{errors.staffMail}</p>}
           </div>
@@ -175,7 +175,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               name="staffAddress"
               value={form.staffAddress}
               onChange={handleChange}
-              placeholder="Staff Address"
+              placeholder="Ex: 10, MG Road, Bangalore - 560001 "
             />
             {errors.staffAddress && <p className="err">{errors.staffAddress}</p>}
           </div>
@@ -188,7 +188,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               <input
                 value={eachQualification}
                 onChange={(e) => handleArrayChange('staffQualification', i, e.target.value)}
-                placeholder={`Qualification ${i + 1}`}
+                placeholder={`B.Tech in Computer Science, Bengalore University ${i + 1}`}
               />
               {form.staffQualification.length > 1 && (
                 <button
@@ -214,7 +214,7 @@ function StaffDialogue({ popup, setOpen, handleEditOrAdd, form, setForm, isEditi
               <input
                 value={eachExp}
                 onChange={(e) => handleArrayChange('staffExperience', i, e.target.value)}
-                placeholder={`Experience ${i + 1}`}
+                placeholder={` 2 years as Java Developer at ABC Company ${i + 1}`}
               />
               {form.staffExperience.length > 1 && (
                 <button

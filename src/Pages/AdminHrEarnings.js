@@ -299,7 +299,7 @@ const AdminHrEarnings = () => {
       const staffMap = new Map(staff.map((item) => [String(item._id), item]));
 
       const hrUsers = users
-        .filter((user) => user.role === 'hr' && user.staffId)
+        .filter((user) => (user.role === 'hr' || user.role === 'staff') && user.staffId)
         .map((user) => {
           const staffProfile = staffMap.get(String(user.staffId));
           return {
