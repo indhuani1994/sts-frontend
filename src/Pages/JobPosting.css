@@ -262,15 +262,17 @@
 }
 
 .job-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, 0.12);
-  color: #1d4ed8;
+  background: #c7d2fe83;
+  padding: 5px;
+  border-radius: 15px;
   font-size: 12px;
+  color: #1d4ed8;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
 }
 
 .job-table-actions {

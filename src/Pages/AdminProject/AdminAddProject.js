@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import "../AdminProject/AdminAddProject.css";
 import MainLayout from "../../MainLayout.js/MainLayout";
 import apiClient from "../../lib/apiClient";
@@ -74,16 +74,56 @@ const AdminProjects = () => {
     if (!isAdmin) return;
     try {
       const res = await apiClient.get("/api/user/staff-dropdown");
+     
+      
       const list = res?.data?.data || res?.data || [];
-      setStaffOptions(Array.isArray(list) ? list : []);
+      const filtered = (Array.isArray(list) ? list : []);
+      setStaffOptions(filtered);
     } catch (err) {
       console.error("Error fetching staff dropdown", err);
     }
   };
 
+
+    // const fetchHrList = useCallback(async () => {
+    //   try {
+    //     const [usersRes, staffRes] = await Promise.all([
+    //       apiClient.get('/api/user/admin/users'),
+    //       apiClient.get('/api/user/staff-dropdown'),
+    //     ]);
+  
+    //     const users = Array.isArray(usersRes.data?.data) ? usersRes.data.data : [];
+    //     const staff = Array.isArray(staffRes.data?.data) ? staffRes.data.data : [];
+    //     const staffMap = new Map(staff.map((item) => [String(item._id), item]));
+  
+    //     const hrUsers = users
+    //       .filter((user) => ( user.role === 'staff') && user.staffId)
+    //       .map((user) => {
+    //         const staffProfile = staffMap.get(String(user.staffId));
+    //         return {
+    //           userId: user._id,
+    //           staffId: user.staffId,
+    //           name: staffProfile?.staffName || user.username || 'staff',
+    //         };
+    //       });
+  
+    //     setStaffOptions(hrUsers);
+    //     console.log(staffOptions)
+    //   } catch (err) {
+    //     setStaffOptions([]);
+    //     console.log('Failed to load HR list');
+    //   }
+    // }, [])
+
+  //  useEffect(() => {
+  //   fetchHrList();
+  // }, []);
+
+
   useEffect(() => {
     fetchProjects();
     fetchStaff();
+  
   }, [isAdmin]);
 
   useEffect(() => {

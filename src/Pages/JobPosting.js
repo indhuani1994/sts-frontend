@@ -388,7 +388,7 @@ const fetchJobs = async () => {
                       <div className="job-table-sub">{job.employmentType || '-'}</div>
                     </td>
                     <td>{job.company || '-'}</td>
-                    <td className="job-pill">{job.type || '-'}</td>
+                    <td ><span className="job-pill">{job.type || '-'}</span></td>
                     <td>{job.workMode || '-'}</td>
                     <td>{job.location || '-'}</td>
                     <td>{job.applicationDeadline ? new Date(job.applicationDeadline).toLocaleDateString() : '-'}</td>
