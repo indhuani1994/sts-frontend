@@ -45,6 +45,7 @@ import {
   Work as JobIcon,
   Grading as MarksIcon,
   Dashboard,
+   AccountTree as ProjectIcon
 } from '@mui/icons-material';
 import logo from '../Assets/Images/logo png.png';
 import {
@@ -87,6 +88,8 @@ const routeConfig = {
     { path: '/staff-management', label: 'Staff', icon: StaffIcon },
     { path: '/company', label: 'Companies', icon: CompanyIcon },
     { path: '/placement-management', label: 'Placements', icon: PlacementIcon },
+    { path: '/jobs', label: 'Job Posting', icon: JobIcon },
+    { path: '/admin-add-project', label: 'Projects', icon: ProjectIcon },
    
     { path: '/stureg', label: 'Registrations', icon: ProfileIcon },
     { path: '/admin-hr-earnings', label: 'HR Earnings', icon: MoneyIcon },
@@ -102,6 +105,7 @@ const routeConfig = {
     { path: '/staff-marks', label: 'Marks', icon: MarksIcon },
     { path: '/course-staff', label: 'Syllabus', icon: SyllabusIcon },
     { path: '/staff-course-update', label: 'Schedule', icon: ScheduleIcon },
+    { path: '/admin-add-project', label: 'Projects', icon: ProjectIcon },
 
   ],
   hr: [

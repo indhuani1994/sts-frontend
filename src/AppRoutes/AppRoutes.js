@@ -398,7 +398,7 @@ function AppRoutes() {
           <Route
             path="/admin-add-project"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["admin", "staff"]}>
                 <AdminAddProject />
               </ProtectedRoute>
             }
